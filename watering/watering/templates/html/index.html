@@ -73,8 +73,8 @@
 
 <div class="container ">
    <div class="jumbotron container_f">
-        <h1>欢迎进入！</h1>
-	<p>今天是2020年7月8日！数据更新到{{hour}}时{{minute}}分{{second}}秒</p>
+        <h1>欢迎进入！王一清！</h1>
+	<p class="time">今天是2020年7月8日！数据更新到{{hour}}时{{minute}}分{{second}}秒</p>
         <p><a class="btn btn-primary btn-lg" role="button" href='/datarecord?time_info=7'>
         查看记录</a>
       </p>
@@ -171,14 +171,14 @@
 <script src="{%static 'js/delaunator.min.js'%}"></script>
 <script  src="{%static 'js/index.js'%}"></script>
 
-
 <script type="text/javascript">
-			var value = {{humidity}};
-                    	var data = [value, value, value, ];
-                        var dom_1 = document.getElementById("container_1");
+        function setball(value,id){
+                    var value_1 = value/100;
+                    var data_1 = [value_1, value_1, value_1, ];
+                        var dom_1 = document.getElementById(id);
                         // dom.style.height=window.innerHeight+'px';
-                        var myChart = echarts.init(dom_1);
-                        var app = {};
+                        var myChart_1 = echarts.init(dom_1);
+                        var app_1 = {};
                         option_1 = null;
                         option_1 = {
                              backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
@@ -189,7 +189,7 @@
                                 color: '#DFF0D8'
                             }]),
                              title: {
-                                 text: (value *1).toFixed(0) + '{a|.}',
+                                 text: (value_1 * 100).toFixed(0) + '{a|}',
                                  textStyle: {
                                      fontSize: 50,
                                      fontFamily: 'Microsoft Yahei',
@@ -198,7 +198,7 @@
                                      rich: {
                                          a: {
                                              fontSize: 28,
-					}
+                                        }
                                      }
                                  },
                                  x: 'center',
@@ -225,7 +225,7 @@
                                  radius: '80%',
                                  center: ['50%', '50%'],
                                  //  shape: 'roundRect',
-                                 data: data,
+                                 data: data_1,
                                  backgroundStyle: {
                                      color: {
                                          type: 'linear',
@@ -274,7 +274,7 @@
                                  },
                                  color: {
                                      type: 'linear',
-					   x: 0,
+                                           x: 0,
                                      y: 0,
                                      x2: 0,
                                      y2: 1,
@@ -298,23 +298,23 @@
                              }, ]
                          };
                         if (option_1 && typeof option_1 === "object") {
-                                myChart.setOption(option_1, true);
+                                myChart_1.setOption(option_1, true);
                         }
                         window.onresize = function(){
-                                myChart.resize();
+                                myChart_1.resize();
                         }
-           </script>
+        }
 
 
- <script type="text/javascript">
-	 		var value = {{temperature}};
-                    	var data = [value, value, value, ];
-                        var dom_2 = document.getElementById("container_2");
+	function setball2(value,id){
+                    var value_1 = value/100;
+                    var data_1 = [value_1, value_1, value_1, ];
+                        var dom_1 = document.getElementById(id);
                         // dom.style.height=window.innerHeight+'px';
-                        var myChart = echarts.init(dom_2);
-                        var app = {};
-                        option_2 = null;
-                        option_2 = {
+                        var myChart_1 = echarts.init(dom_1);
+                        var app_1 = {};
+                        option_1 = null;
+                        option_1 = {
                              backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
                                 offset: 0,
                                 color: '#d9edf7'
@@ -323,7 +323,7 @@
                                 color: '#d9edf7'
                             }]),
                              title: {
-                                 text: (value * 1).toFixed(0) + '{a|.}',
+                                 text: (value_1 * 100).toFixed(0) + '{a|}',
                                  textStyle: {
                                      fontSize: 50,
                                      fontFamily: 'Microsoft Yahei',
@@ -332,7 +332,7 @@
                                      rich: {
                                          a: {
                                              fontSize: 28,
-                                         }
+                                        }
                                      }
                                  },
                                  x: 'center',
@@ -348,9 +348,9 @@
                                      left: '10',
                                      top: 'middle',
                                      style: {
-                                         fill: 'd9edf7',
+                                         fill: '#dff0d8',
                                          text: '',
-                                         font: '50px Microsoft YaHei'
+                                         font: '30px Microsoft YaHei'
                                      }
                                  }]
                              }],
@@ -359,7 +359,7 @@
                                  radius: '80%',
                                  center: ['50%', '50%'],
                                  //  shape: 'roundRect',
-                                 data: data,
+                                 data: data_1,
                                  backgroundStyle: {
                                      color: {
                                          type: 'linear',
@@ -369,13 +369,13 @@
                                          y2: 1,
                                          colorStops: [{
                                              offset: 1,
-                                             color: 'rgba(12,81,224, 0)'
+                                             color: 'rgba(25,59,147, 0)'
                                          }, {
                                              offset: 0.5,
-                                             color: 'rgba(12,81,224, .25)'
+                                             color: 'rgba(25,59,147, .25)'
                                          }, {
                                              offset: 0,
-                                             color: 'rgba(12,81,224, 1)'
+                                             color: 'rgba(25,59,147, 1)'
                                          }],
                                          globalCoord: false
                                      },
@@ -392,13 +392,13 @@
                                              y2: 1,
                                              colorStops: [{
                                                  offset: 0,
-                                                 color: 'rgba(12,81,224, 0)'
+                                                 color: 'rgba(25,59,147, 0)'
                                              }, {
                                                  offset: 0.5,
-                                                 color: 'rgba(12,81,224, .25)'
+                                                 color: 'rgba(25,59,147, .25)'
                                              }, {
                                                  offset: 1,
-                                                 color: 'rgba(12,81,224, 1)'
+                                                 color: 'rgba(25,59,147, 1)'
                                              }],
                                              globalCoord: false
                                          },
@@ -408,19 +408,19 @@
                                  },
                                  color: {
                                      type: 'linear',
-                                     x: 0,
+                                           x: 0,
                                      y: 0,
                                      x2: 0,
                                      y2: 1,
                                      colorStops: [{
                                          offset: 1,
-                                         color: 'rgba(12,81,224, 0)'
+                                         color: 'rgba(25,59,174, 0)'
                                      }, {
                                          offset: 0.5,
-                                         color: 'rgba(12,81,224, .2)'
+                                         color: 'rgba(25,59,174, .2)'
                                      }, {
                                          offset: 0,
-                                         color: 'rgba(12,81,224, 1)'
+                                         color: 'rgba(15,59,174, 1)'
                                      }],
                                      globalCoord: false
                                  },
@@ -431,19 +431,59 @@
                                  }
                              }, ]
                          };
-                        if (option_2 && typeof option_2 === "object") {
-                                myChart.setOption(option_2, true);
+                        if (option_1 && typeof option_1 === "object") {
+                                myChart_1.setOption(option_1, true);
                         }
                         window.onresize = function(){
-                                myChart.resize();
+                                myChart_1.resize();
                         }
-           </script>
+        }
 
 
- <script type="text/javascript">
-	
 
- </script>
+        $(function(){
+                setInterval(getLoc,5000);
+		setball({{temperature}},"container_1");
+		setball2({{humidity}},"container_2");
+                //getLoc();
+        });
+        function getLoc(){
+
+                $.ajax({
+                        url: "/monitor/",
+                        type : "POST",
+                        data:{},
+                        success:function(data){
+				$(".time").text("今天是"+(data.year)+"年"+(data.month)+"月"+(data.day)+"日！数据更新到"+(data.hour)+"时"+(data.minute)+"分"+(data.second)+"秒");
+				
+				$("#container_1").text("");
+				$("#container_1").removeAttr("_echarts_instance_")
+				str1 = "height:250px";
+				$("#container_1").attr("style",str1);
+                                $("#container_2").text("");
+				$("#container_2").removeAttr("_echarts_instance_")
+                                str1 = "height:250px";
+                                $("#container_2").attr("style",str1);
+
+                                setball(data.temperature,"container_1");
+                                setball2(data.humidity,"container_2");
+				
+				$("#layer04").attr("data-ydata",data.humidity_data);
+				$("#layer05").attr("data-ydata",data.temperature_data);
+                                renderLayer04Left();
+                                renderLayer05Left();
+				str1 = "width:";
+				str1 = str1.concat(data.temperature_percent).concat("%");
+				$(".progress-bar-success").attr("style",str1);
+				str1 = "width:";
+                                str1 = str1.concat(data.humidity_percent).concat("%");
+				$(".progress-bar-info").attr("style",str1);
+                   
+                        }
+                })
+        }
+
+</script>
 
 
 

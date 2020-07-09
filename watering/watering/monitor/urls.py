@@ -4,6 +4,7 @@ from monitor.views import Monitor
 
 
 urlpatterns=[
-    url(r'',Monitor.as_view()),
+    url('',Monitor.as_view()),
+    url('/',Monitor.as_view()),
 ]
 

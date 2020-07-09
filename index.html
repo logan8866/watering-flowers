@@ -73,7 +73,7 @@
 <div class="container ">
    <div class="jumbotron container_f">
         <h1>欢迎进入！</h1>
-        <p>今天是2020年7月8日！</p>
+        <p class="time">今天是2020年7月8日！</p>
         <p><a class="btn btn-primary btn-lg" role="button">
         查看记录</a>
       </p>
@@ -172,12 +172,13 @@
 
 
 <script type="text/javascript">
-                    var value = 0.3;
-                    var data = [value, value, value, ];
-                        var dom_1 = document.getElementById("container_1");
+	function setball(value,id){
+                    var value_1 = value;
+                    var data_1 = [value_1, value_1, value_1, ];
+                        var dom_1 = document.getElementById(id);
                         // dom.style.height=window.innerHeight+'px';
-                        var myChart = echarts.init(dom_1);
-                        var app = {};
+                        var myChart_1 = echarts.init(dom_1);
+                        var app_1 = {};
                         option_1 = null;
                         option_1 = {
                              backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
@@ -188,7 +189,7 @@
                                 color: '#DFF0D8'
                             }]),
                              title: {
-                                 text: (value * 100).toFixed(0) + '{a|%}',
+                                 text: (value_1 * 100).toFixed(0) + '{a|%}',
                                  textStyle: {
                                      fontSize: 50,
                                      fontFamily: 'Microsoft Yahei',
@@ -224,7 +225,7 @@
                                  radius: '80%',
                                  center: ['50%', '50%'],
                                  //  shape: 'roundRect',
-                                 data: data,
+                                 data: data_1,
                                  backgroundStyle: {
                                      color: {
                                          type: 'linear',
@@ -297,146 +298,45 @@
                              }, ]
                          };
                         if (option_1 && typeof option_1 === "object") {
-                                myChart.setOption(option_1, true);
+                                myChart_1.setOption(option_1, true);
                         }
                         window.onresize = function(){
-                                myChart.resize();
+                                myChart_1.resize();
                         }
-           </script>
+	}
+	
+
+	$(function(){
+        	setInterval(getLoc,5000);
+		setball(0.4,"container_1");
+    		//getLoc();
+     	});
+	function getLoc(){
+		
+    		$.ajax({
+    			url: "/monitor",
+          		type : "POST",
+          		data:{}, 
+			success:function(data){
+				setball(data.temperature,"container_1");
+				setball(data.hunidity,"container_2");
+				renderLayer04Left();
+                		renderLayer05Left();
+				alert("test");
+			}
+		})
+	}
+	
 
 
- <script type="text/javascript">
-                    var value = 0.3;
-                    var data = [value, value, value, ];
-                        var dom_2 = document.getElementById("container_2");
-                        // dom.style.height=window.innerHeight+'px';
-                        var myChart = echarts.init(dom_2);
-                        var app = {};
-                        option_2 = null;
-                        option_2 = {
-                             backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
-                                offset: 0,
-                                color: '#d9edf7'
-                            }, {
-                                offset: 1,
-                                color: '#d9edf7'
-                            }]),
-                             title: {
-                                 text: (value * 100).toFixed(0) + '{a|%}',
-                                 textStyle: {
-                                     fontSize: 50,
-                                     fontFamily: 'Microsoft Yahei',
-                                     fontWeight: 'normal',
-                                     color: '#d9edf7',
-                                     rich: {
-                                         a: {
-                                             fontSize: 28,
-                                         }
-                                     }
-                                 },
-                                 x: 'center',
-                                 y: '35%'
-                             },
-                             graphic: [{
-                                 type: 'group',
-                                 left: 'center',
-                                 top: '60%',
-                                 children: [{
-                                     type: 'text',
-                                     z: 100,
-                                     left: '10',
-                                     top: 'middle',
-                                     style: {
-                                         fill: 'd9edf7',
-                                         text: '',
-                                         font: '50px Microsoft YaHei'
-                                     }
-                                 }]
-                             }],
-                             series: [{
-                                 type: 'liquidFill',
-                                 radius: '80%',
-                                 center: ['50%', '50%'],
-                                 //  shape: 'roundRect',
-                                 data: data,
-                                 backgroundStyle: {
-                                     color: {
-                                         type: 'linear',
-                                         x: 1,
-                                         y: 0,
-                                         x2: 0.5,
-                                         y2: 1,
-                                         colorStops: [{
-                                             offset: 1,
-                                             color: 'rgba(12,81,224, 0)'
-                                         }, {
-                                             offset: 0.5,
-                                             color: 'rgba(12,81,224, .25)'
-                                         }, {
-                                             offset: 0,
-                                             color: 'rgba(12,81,224, 1)'
-                                         }],
-                                         globalCoord: false
-                                     },
-                                 },
-                                 outline: {
-                                     borderDistance: 0,
-                                     itemStyle: {
-                                         borderWidth: 20,
-                                         borderColor: {
-                                             type: 'linear',
-                                             x: 0,
-                                             y: 0,
-                                             x2: 0,
-                                             y2: 1,
-                                             colorStops: [{
-                                                 offset: 0,
-                                                 color: 'rgba(12,81,224, 0)'
-                                             }, {
-                                                 offset: 0.5,
-                                                 color: 'rgba(12,81,224, .25)'
-                                             }, {
-                                                 offset: 1,
-                                                 color: 'rgba(12,81,224, 1)'
-                                             }],
-                                             globalCoord: false
-                                         },
-                                         shadowBlur: 10,
-                                         shadowColor: '#000',
-                                     }
-                                 },
-                                 color: {
-                                     type: 'linear',
-                                     x: 0,
-                                     y: 0,
-                                     x2: 0,
-                                     y2: 1,
-                                     colorStops: [{
-                                         offset: 1,
-                                         color: 'rgba(12,81,224, 0)'
-                                     }, {
-                                         offset: 0.5,
-                                         color: 'rgba(12,81,224, .2)'
-                                     }, {
-                                         offset: 0,
-                                         color: 'rgba(12,81,224, 1)'
-                                     }],
-                                     globalCoord: false
-                                 },
-                                 label: {
-                                     normal: {
-                                         formatter: '',
-                                     }
-                                 }
-                             }, ]
-                         };
-                        if (option_2 && typeof option_2 === "object") {
-                                myChart.setOption(option_2, true);
-                        }
-                        window.onresize = function(){
-                                myChart.resize();
-                        }
-           </script>
+	
+
+
+</script>
+
+
+
+
 
 </body>
 </html>
