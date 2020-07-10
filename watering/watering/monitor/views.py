@@ -46,8 +46,14 @@ class Monitor(View):
         hour = str(data.hour)
         minute = str(data.minute)
         second = str(data.second)
-        temperature = int(data.temperature)
-        humidity = int(data.humidity)
+        temperature = data.temperature
+        humidity = data.humidity
+        if temperature<20 and humidity<20:
+            alert = "很好！你的植物不需要浇水！"
+            alert_css = "alert alert-success"
+        else:
+            alert = "注意！！！你的植物需要浇水了！！！"
+            alert_css = "alert alert-danger"
         standard_temperature = 40
         standard_humidity = 40
         temperature_percent = str(temperature/standard_temperature*100)
@@ -73,6 +79,8 @@ class Monitor(View):
                 "humidity_percent":humidity_percent,
                 "humidity_data":humidity_data,
                 "temperature_data":temperature_data,
+                "alert":alert,
+                "alert_css":alert_css,
         }
         return JsonResponse(context)
 

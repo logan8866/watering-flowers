@@ -69,7 +69,7 @@
     </div>
 </nav>
 
-<div class="alert alert-success">很好！您的植物不需要浇水</div>
+<div id="alert_1" class="alert alert-success">很好！您的植物不需要浇水</div>
 
 <div class="container ">
    <div class="jumbotron container_f">
@@ -478,6 +478,8 @@
 				str1 = "width:";
                                 str1 = str1.concat(data.humidity_percent).concat("%");
 				$(".progress-bar-info").attr("style",str1);
+				$("#alert_1").attr("class",data.alert_css);
+				$("#alert_1").text(data.alert);
                    
                         }
                 })
